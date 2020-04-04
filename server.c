@@ -2,18 +2,15 @@
 #include<stdio.h>
 #include"tools/tool.h"
 #include "include/server.h"
+#include<cjson/cJSON.h>
 
-void init();                //初始化运行环境
-
-void anlayzeMessage();      //分析应用层协议
-
-t_socketfd getConnect();
 
 int main()
 {
     t_socketfd serverSocket=0;      //服务端套接字变量
     t_socketfd clientSocket=0;      //客户端套接字变量
     struct sockaddr_in serveraddr;  //服务器地址结构体
+    struct t_packet recivePacket; //接收报文缓冲结构体
     socklen_t socklenth = 0;
     pid_t pid = 0;                                            
     
@@ -32,24 +29,12 @@ int main()
         if(pid==0)
         {
             Close(serverSocket);
+            getPacket(clientSocket,&recivePacket);                  //解析消息到消息结构体
+            anlayzePacket(&recivePacket);                           //分析消息中所带的协议
+                                                                   //依照分析然后给予响应的回应
             Close(serverSocket);
         }
 
     }
-    return 0;
-}
-
-void init()
-{
-    printf("this is init\n");
-}
-
-void anlayzeMessage()
-{
-
-}
-
-t_socketfd getConnect()
-{
     return 0;
 }
