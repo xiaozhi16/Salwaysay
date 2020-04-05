@@ -14,6 +14,9 @@ int main()
     socklen_t socklenth = 0;
     pid_t pid = 0;                                            
     
+    //系统初始化
+
+    
     //首先套接字绑定
     setIPAddr(&serveraddr,"all",PORT);
     serverSocket = Socket(AF_INET,SOCK_STREAM,IPPROTO_TCP);
@@ -31,10 +34,9 @@ int main()
             Close(serverSocket);
             getPacket(clientSocket,&recivePacket);                  //解析消息到消息结构体
             anlayzePacket(&recivePacket);                           //分析消息中所带的协议
-                                                                   //依照分析然后给予响应的回应
+                                                                    //依照分析然后给予响应的回应
             Close(serverSocket);
         }
-
     }
     return 0;
 }

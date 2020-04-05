@@ -48,7 +48,12 @@ int anlayzePacket(struct t_packet * recivePacket)
         
         break;
     case MESSAGE:
-    
+        
+        break;
+    case REPORT:
+
+        break;
+    case ALIVE:
         break;
     default:
         break;

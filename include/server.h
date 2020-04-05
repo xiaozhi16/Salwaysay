@@ -14,12 +14,16 @@
 /*定义packet的第一个字段type*/
 #define FILE 0                  //文件类型定义为0
 #define MESSAGE 1               //消息类型定义为1
+#define REPORT 2                //报告类型定义为2
+#define ALIVE 3                 //心跳类型定义为3
 
 typedef int t_socketfd;         //套接字类可视化转换  
 
 struct t_packet{
-    int type;       //消息的类型
+    int type;           //消息的类型
     char operate[40];   //消息请求的服务器操作类型
+    char from[40];      //消息的发送方
+    char to [40];       //消息的接收方
     char message[1024];
 };
 
