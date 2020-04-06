@@ -4,3 +4,6 @@
 #include "include/server.h"
 #include<cjson/cJSON.h>
 
+void keepAlive(){
+    
+}

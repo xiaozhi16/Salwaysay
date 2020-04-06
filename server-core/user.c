@@ -4,15 +4,8 @@
 #include"../tools/tool.h"
 #include "../include/server.h"
 
-
-void filerecv(){
-
-    
-}
-
-void filesend(struct t_packet * recivePacket)
+int fineUser(char* username)
 {
-    char* root = cJSON_Parse(recivePacket->content);
     
-
+    return 0;
 }

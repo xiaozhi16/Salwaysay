@@ -24,7 +24,7 @@ struct t_packet{
     char operate[40];   //消息请求的服务器操作类型
     char from[40];      //消息的发送方
     char to [40];       //消息的接收方
-    char message[1024];
+    char content[1024];
 };
 
 /***********函数声明区域*************/
@@ -37,5 +37,6 @@ struct t_packet{
 int getPacket(t_socketfd clientSocket,struct t_packet * recivePacket);   //获取消息的消息
 
 int anlayzePacket(struct t_packet * recivePacket);                      //分析应用层协议消息
+
 
 #endif

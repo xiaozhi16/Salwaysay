@@ -2,6 +2,7 @@
     "files.associations": {
         "cjson.h": "c",
         "server.h": "c",
-        "tool.h": "c"
+        "tool.h": "c",
+        "stdio.h": "c"
     }
 }
