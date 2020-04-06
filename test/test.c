@@ -3,39 +3,41 @@
 #include"../tools/tool.h"
 #include "../include/server.h"
 #include<cjson/cJSON.h>
-
-int getTestMessage(char * buff,struct t_message * reciveMessage)
+#include<mysql/mysql.h>
+MYSQL connectToMysql()
 {
-    cJSON* root = NULL;
-    cJSON* type = NULL;
-    cJSON* operate = NULL;
-    cJSON* message = NULL;
-    int size = 0;       //实际读到的字节个数
-    root = cJSON_Parse(buff);
-    type = cJSON_GetObjectItem(root,"type");                //获取type报文类型
-    operate = cJSON_GetObjectItem(root,"operate");          //获取operator类型
-    message = cJSON_GetObjectItem(root,"message");   //获取message 
-    if(root==NULL || type==NULL || operate == NULL || message==NULL)
+    MYSQL mysql;
+    mysql_init(&mysql);
+    mysql_real_connect(&mysql,"127.0.0.1","MRx16","dpk176921","alwaysay",3306,NULL,0);
+    mysql_set_character_set(&mysql,"utf8");
+    unsigned int errNo = mysql_errno(&mysql);
+    if(errNo==0)
     {
-        printf("报文格式无效!");
-        return FALSE;
+
     }
     else
     {
-        reciveMessage->type = type->valueint;
-        strcpy(reciveMessage->operate,operate->valuestring);
-        strcpy(reciveMessage->message,message->valuestring);
-        printf("type是%d\n操作是%s\n消息是%s\n",reciveMessage->type,reciveMessage->operate,reciveMessage->message);
-        cJSON_Delete(root);
-        reciveMessage->type = type->valueint;
+        printf("mysql error:[%d]:%s",errNo,mysql_error(&mysql));
     }
-    return TRUE;
+    return mysql;
+}
+
+int update(MYSQL* mysql,const char* table,const char* column,const char* newData,const char * where)
+{
+    char query[2048];
+    sprintf(query,"update %s set %s=%s where %s;",table,column,newData,where);
+    printf("%s",query);
+    return 0;
 }
 
 int main()
 {
-    struct t_message reciveMessage; //接收报文缓冲结构体
-    char buff[2048]="{\"type\":\"0\",\"operate\":\"send\",\"message\":\"hello 你好\"}" ;    //缓存区
-    getTestMessage(buff,&reciveMessage);
+    // MYSQL mysql = connectToMysql();
+    // update(&mysql,"test","username","\'mrx\'","username=\'dpkadmin\'");
+    // mysql_close(&mysql);
+    //Log("error","this is a error");
+    Log("INFO","this is a info");
+    Log("ERROR","this is a error");
+    Log("WARNING","this is a warning");
     return 0;
 }
