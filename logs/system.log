@@ -2,5 +2,14 @@
 [2020-04-06 07:19:00]<ERROR>:this is a error
 [2020-04-06 07:19:00]<ERROR>:this is a warning
 [2020-04-06 07:19:51]<INFO>:this is a info
-[2020-04-06 07:19:51]<ERROR>:this is a error
-[2020-04-06 07:19:51]<WARNING>:this is a warning
+[2020-04-30 07:33:57]<INFO>:{mysql connect}:连接成功!
+[2020-04-30 07:34:12]<INFO>:{mysql connect}:连接成功!
+[2020-04-30 07:34:13]<INFO>:{mysql connect}:连接成功!
+[2020-04-30 07:34:14]<INFO>:{mysql connect}:连接成功!
+[2020-04-30 07:34:14]<INFO>:{mysql connect}:连接成功!
+[2020-04-30 07:44:40]<INFO>:{mysql connect}:连接成功!
+[2020-04-30 07:45:27]<INFO>:{mysql connect}:连接成功!
+[2020-04-30 07:46:13]<INFO>:{mysql connect}:连接成功!
+[2020-04-30 07:48:43]<INFO>:{mysql connect}:连接成功!
+[2020-04-30 07:50:38]<INFO>:{mysql connect}:连接成功!
+[2020-04-30 07:51:16]<INFO>:{mysql connect}:连接成功!

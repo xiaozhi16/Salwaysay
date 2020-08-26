@@ -10,5 +10,9 @@ clean:
 	rm -i ${HOME}/build/debug/server
 compiler:
 
-
-
+client: client.c
+	@echo =========开始编译客户端=============
+	gcc client.c -o client -L${LIBDIR} -ltool -lunp
+	mv client ${HOME}/build/debug/client
+	@echo =========结束编译客户端=============
+	

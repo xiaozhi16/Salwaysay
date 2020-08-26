@@ -1,7 +1,7 @@
 #include<sys/socket.h>
 #include<stdio.h>
-#include"tools/tool.h"
-#include "include/server.h"
+#include "../include/server.h"
+#include "../include/tool.h"
 #include<cjson/cJSON.h>
 
 /*
@@ -30,8 +30,9 @@ int getPacket(t_socketfd clientSocket,struct t_packet * recivePacket)
     content = cJSON_GetObjectItem(root,"content");   //获取content 
     if(root==NULL || type==NULL || operate == NULL || content==NULL || from==NULL || to==NULL)
     {
-        printf("报文格式无效!");
-        return FALSE;
+        log_to_console(ERROR,"报文格式无效!");
+        cJSON_Delete(root);
+        return 0;
     }
     else
     {
@@ -42,7 +43,7 @@ int getPacket(t_socketfd clientSocket,struct t_packet * recivePacket)
         strcpy(recivePacket->content,content->valuestring);
         cJSON_Delete(root);
     }
-    return TRUE;
+    return 1;
 }
 
 
@@ -51,20 +52,21 @@ int anlayzePacket(struct t_packet * recivePacket)
 {
     switch (recivePacket->type)
     {
-    case FILE:
-        fileSend();
+    case FILETYPE:
+        file_main();
         break;
     case MESSAGE:
-        contentSend();
+        message_main();
         break;
     case REPORT:
-
         break;
+    case USER:
+        usermain();
     case ALIVE:
-        keepAlive();
+        keepAlive_main();
         break;
     default:
         break;
     }
-    return TRUE;
+    return 1;
 }
